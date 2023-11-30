@@ -90,17 +90,17 @@ z = np.dot(X_test_class, coefficients)
 predictions = sigmoid(z)
 y_pred = (predictions >= 0.5).astype(int)
 
-# Calcular la precisión del modelo
+# Calcular metricas
 accuracy = accuracy_score(y_test_class, y_pred)
 print("Precisión del modelo: {:.2f}%".format(accuracy * 100))
 
-# Calcular otras métricas
 precision = precision_score(y_test_class, y_pred)
-recall = recall_score(y_test_class, y_pred)
-f1 = f1_score(y_test_class, y_pred)
-
 print("Precisión: {:.2f}".format(precision))
+
+recall = recall_score(y_test_class, y_pred)
 print("Recall: {:.2f}".format(recall))
+
+f1 = f1_score(y_test_class, y_pred)
 print("F1 Score: {:.2f}".format(f1))
 
 # Mostrar matriz de confusión
