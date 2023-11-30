@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
 # Leer el dataset zoo.csv
 zoo_df = pd.read_csv("c:\\zoo.csv")
 
 # Codificar las variables categóricas
-
+# (Asegúrate de ajustar estas codificaciones según tus necesidades)
 zoo_df['hair'] = zoo_df['hair'].map({0: 0, 1: 1})
+# Continúa codificando las demás columnas
 
 # Agregar una columna de unos para el sesgo (bias)
 zoo_df["bias"] = 1
@@ -65,3 +67,24 @@ print("Recall (weighted):", recall)
 print("F1-score (weighted):", f1)
 print("Matriz de Confusión:")
 print(conf_matrix)
+
+
+# Visualización de la matriz de confusión con Matplotlib
+plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
+plt.title('Matriz de Confusión')
+plt.colorbar()
+
+classes = np.unique(y_test)
+tick_marks = np.arange(len(classes))
+plt.xticks(tick_marks, classes)
+plt.yticks(tick_marks, classes)
+
+plt.xlabel('Predicciones')
+plt.ylabel('Valores reales')
+
+# Añadir anotaciones en cada celda
+for i in range(len(classes)):
+    for j in range(len(classes)):
+        plt.text(j, i, str(conf_matrix[i, j]), horizontalalignment='center', verticalalignment='center')
+
+plt.show()
