@@ -7,9 +7,8 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 zoo_df = pd.read_csv("c:\\zoo.csv")
 
 # Codificar las variables categóricas
-# (Asegúrate de ajustar estas codificaciones según tus necesidades)
+
 zoo_df['hair'] = zoo_df['hair'].map({0: 0, 1: 1})
-# Continúa codificando las demás columnas
 
 # Agregar una columna de unos para el sesgo (bias)
 zoo_df["bias"] = 1
