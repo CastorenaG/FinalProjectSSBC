@@ -29,7 +29,7 @@ y_train_heart = train_data_heart['output']
 X_test_heart = test_data_heart.drop('output', axis=1)
 y_test_heart = test_data_heart['output']
 
-# Normalizar manualmente
+# Normalizar 
 mean_heart = X_train_heart.mean()
 std_heart = X_train_heart.std()
 
