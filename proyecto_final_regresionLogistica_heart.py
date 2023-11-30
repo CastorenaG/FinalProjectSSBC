@@ -81,7 +81,6 @@ precision = np.sum((y_test == 1) & (y_pred == 1)) / np.sum(y_pred == 1)
 recall = np.sum((y_test == 1) & (y_pred == 1)) / np.sum(y_test == 1)
 f1 = 2 * (precision * recall) / (precision + recall)
 
-# Mostrar métricas
 print("Precisión del modelo: {:.2f}%".format(accuracy * 100))
 print("Precisión: {:.2f}".format(precision))
 print("Recall: {:.2f}".format(recall))
