@@ -1,12 +1,13 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 from sklearn.utils import shuffle
 
 # Leer el dataset heart.csv
 heart_df = pd.read_csv("c:\\heart.csv")
 
-#Seleccionar índices para el conjunto de entrenamiento y prueba
+# Manualmente seleccionar índices para el conjunto de entrenamiento y prueba
 np.random.seed(42)  
 indices = np.arange(len(heart_df))
 np.random.shuffle(indices)
@@ -30,7 +31,7 @@ y_train_heart = train_data_heart['output']
 X_test_heart = test_data_heart.drop('output', axis=1)
 y_test_heart = test_data_heart['output']
 
-# Normalizar
+# Normalizar manualmente
 mean_heart = X_train_heart.mean()
 std_heart = X_train_heart.std()
 
@@ -96,4 +97,23 @@ print("Recall (weighted):", recall)
 print("F1-score (weighted):", f1)
 print("Matriz de Confusión:")
 print(conf_matrix)
-    
+
+# Visualización de la matriz de confusión con Matplotlib
+plt.imshow(conf_matrix, interpolation='nearest', cmap=plt.cm.Blues)
+plt.title('Matriz de Confusión')
+plt.colorbar()
+
+classes = ['Clase 0', 'Clase 1']  # Ajusta según las clases de tu problema
+tick_marks = np.arange(len(classes))
+plt.xticks(tick_marks, classes)
+plt.yticks(tick_marks, classes)
+
+plt.xlabel('Predicciones')
+plt.ylabel('Valores reales')
+
+# Añadir anotaciones en cada celda
+for i in range(len(classes)):
+    for j in range(len(classes)):
+        plt.text(j, i, str(conf_matrix[i, j]), horizontalalignment='center', verticalalignment='center')
+
+plt.show()  
